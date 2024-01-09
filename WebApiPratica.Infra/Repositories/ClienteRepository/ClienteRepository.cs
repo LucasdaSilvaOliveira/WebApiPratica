@@ -77,7 +77,7 @@ namespace WebApiPratica.Domain.Repositories.ClienteRepository
             }
             else
             {
-                throw new Exception("Não foi possível fazer a operação.");
+                throw new Exception("Não foi possível fazer a operação com este dado de entrada.");
             }
 
         }

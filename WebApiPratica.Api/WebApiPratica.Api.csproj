@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WebApiPratica.Domain\WebApiPratica.Domain.csproj" />
     <ProjectReference Include="..\WebApiPratica.Infra\WebApiPratica.Infra.csproj" />
   </ItemGroup>
