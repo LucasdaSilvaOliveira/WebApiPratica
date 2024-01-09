@@ -26,7 +26,12 @@
 
   <ItemGroup>
     <Folder Include="Integration\" />
-    <Folder Include="Unit\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebApiPratica.Api\WebApiPratica.Api.csproj" />
+    <ProjectReference Include="..\WebApiPratica.Domain\WebApiPratica.Domain.csproj" />
+    <ProjectReference Include="..\WebApiPratica.Infra\WebApiPratica.Infra.csproj" />
   </ItemGroup>
 
 </Project>
