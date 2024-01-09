@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using WebApiPratica.Domain.Repositories.ClienteRepository;
 using WebApiPratica.Infra.Data;
+using WebApiPratica.Infra.Repositories.PedidoRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<BancoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase")));
+
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 
 var app = builder.Build();
 

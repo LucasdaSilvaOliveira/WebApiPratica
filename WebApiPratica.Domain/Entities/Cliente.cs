@@ -14,6 +14,8 @@ namespace WebApiPratica.Domain.Entities
 
         public string Nome { get; set; }
 
+        public string Endereco { get; set; }
+
         public ICollection<Pedido>? Pedidos { get; set; }
     }
 }
