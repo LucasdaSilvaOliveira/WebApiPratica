@@ -9,6 +9,7 @@ O projeto está dividido em diferentes camadas, cada uma com sua responsabilidad
 - `Domain`: Contém as entidades, objetos de valor, interfaces de repositório e serviços do domínio.
 - `Infrastructure`: Implementações concretas das interfaces definidas no domínio, incluindo acesso a banco de dados, serviços externos, etc.
 - `Tests`: Contém os testes unitários e/ou de integração para validar o funcionamento do código.
+- `Api`: Contém os controllers com as rotas para o acesso ao banco.
 
 ## Tecnologias Utilizadas
 
