@@ -12,12 +12,18 @@ namespace WebApiPratica.Testes.Unit.Controllers
 {
     public class ClienteControllerTest
     {
-        [Fact(DisplayName = "Teste de obter todos os clientes com retorno de Ok")]
+        private Mock<IClienteRepository> _clienteRepositoryMock;
+        public ClienteControllerTest()
+        {
+            _clienteRepositoryMock = new Mock<IClienteRepository>();
+        }
+
+        [Fact(DisplayName = "Teste de obter todos os clientes com retorno de status Ok")]
         public void ObterTodosOsClientesDeveRetornarOk()
         {
-            var mockClienteRepositorio = new Mock<IClienteRepository>();
+            _clienteRepositoryMock.Setup(x => x.ObterTodos()).Returns(new List<Cliente>());
 
-            mockClienteRepositorio.Setup(x => x.ObterTodos()).Returns(new List<Domain.Entities.Cliente>());
+            var clienteController = new ClienteController(_clienteRepositoryMock.Object);
 
             var clienteController = new ClienteController(mockClienteRepositorio.Object);
 
@@ -31,9 +37,12 @@ namespace WebApiPratica.Testes.Unit.Controllers
         {
             var mockClienteRepositorio = new Mock<IClienteRepository>();
 
-            mockClienteRepositorio.Setup(x => x.ObterPorId(It.IsAny<int>())).Throws(new Exception());
+        [Fact(DisplayName = "Teste de obter cliente através do id deve retornar status BadRequest")]
+        public void ObterClientePorIdDeveRetornarBadRequest()
+        {
+            _clienteRepositoryMock.Setup(x => x.ObterPorId(It.IsAny<int>())).Throws(new Exception());
 
-            var clienteController = new ClienteController(mockClienteRepositorio.Object);
+            var clienteController = new ClienteController(_clienteRepositoryMock.Object);
 
             var retornoObterPorId = clienteController.ObterPorId(It.IsAny<int>());
 
