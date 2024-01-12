@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebApiPratica.Domain.Entities;
 using WebApiPratica.Infra.Repositories.PedidoRepository;
 
 namespace WebApiPratica.Api.Controllers
@@ -35,6 +36,22 @@ namespace WebApiPratica.Api.Controllers
             {
                 var pedido = _pedidoRepository.ObterPorId(id);
                 return Ok(pedido);
+            } catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("AdicionarPedido")]
+        public IActionResult AdicionarPedido(Pedido pedido)
+        {
+            try
+            {
+                _pedidoRepository.AdicionarPedido(pedido);
+                var pedidos = _pedidoRepository.ObterTodos();
+                return Ok(pedidos);
+
             } catch (Exception ex)
             {
                 return NotFound(ex.Message);
