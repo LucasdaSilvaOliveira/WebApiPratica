@@ -42,14 +42,34 @@ namespace WebApiPratica.Testes.Unit.Controllers
             Assert.IsType<OkObjectResult>(retornoObterPorId);
         }
 
-        [Fact(DisplayName = "Obter pedido por id deve retornar uma Exception")]
-        public void ObterPedidoPorIdDeveRetornarException()
+        [Fact(DisplayName = "Obter pedido por id deve retornar uma NotFound")]
+        public void ObterPedidoPorIdDeveRetornarNotFound()
         {
             _pedidoRepository.Setup(x => x.ObterPorId(It.IsAny<int>())).Throws(new Exception());
 
             var retornoObterPorId = _pedidoController.ObterPorId(It.IsAny<int>());
 
             Assert.IsType<NotFoundObjectResult>(retornoObterPorId);
+        }
+
+        [Fact(DisplayName = "Adicionar pedido deve retornar status Ok")]
+        public void AdicionarPedidoDeveRetornarOk()
+        {
+            _pedidoRepository.Setup(x => x.AdicionarPedido(It.IsAny<Pedido>())).Returns(true);
+
+            var retornoAddPedido = _pedidoController.AdicionarPedido(It.IsAny<Pedido>());
+
+            Assert.IsType<OkObjectResult>(retornoAddPedido);
+        }
+
+        [Fact(DisplayName = "Adicionar pedido deve retornar um NotFound")]
+        public void AdicionarPedidoDeveRetornarNotFound()
+        {
+            _pedidoRepository.Setup(x => x.AdicionarPedido(It.IsAny<Pedido>())).Throws(new Exception());
+
+            var retornoAddPedido = _pedidoController.AdicionarPedido(It.IsAny<Pedido>());
+
+            Assert.IsType<NotFoundObjectResult>(retornoAddPedido);
         }
     }
 }
